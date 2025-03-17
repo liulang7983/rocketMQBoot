@@ -21,7 +21,7 @@ public class PushConsumerExample {
         // 指定 NameServer 地址
         consumer.setNamesrvAddr("localhost:9876");
         // 订阅主题和标签
-        consumer.subscribe("TestTopic", "TagA");
+        consumer.subscribe("TopicTest", "TagA");
         // 注册消息监听器
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override

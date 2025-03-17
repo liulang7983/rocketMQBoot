@@ -9,9 +9,11 @@ import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.PullResult;
 import org.apache.rocketmq.client.consumer.PullStatus;
 import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.message.MessageQueue;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +27,7 @@ public class PullConsumerExample {
         consumer.start();
 
         // 获取主题的所有消息队列
-        Set<MessageQueue> mqs = consumer.fetchSubscribeMessageQueues("TestTopic");
+        Set<MessageQueue> mqs = consumer.fetchSubscribeMessageQueues("TopicTest");
         for (MessageQueue mq : mqs) {
             // 记录每个消息队列的消费偏移量
             Map<MessageQueue, Long> offsetTable = new HashMap<>();
@@ -43,7 +45,11 @@ public class PullConsumerExample {
                     switch (pullResult.getPullStatus()) {
                         case FOUND:
                             // 处理消息
-                            System.out.println(pullResult.getMsgFoundList());
+                            List<MessageExt> msgFoundList = pullResult.getMsgFoundList();
+                            for (int i = 0; i <msgFoundList.size() ; i++) {
+                                System.out.println("消息:"+new String(msgFoundList.get(i).getBody()));
+                            }
+                            System.out.println();
                             break;
                         case NO_MATCHED_MSG:
                             break;
