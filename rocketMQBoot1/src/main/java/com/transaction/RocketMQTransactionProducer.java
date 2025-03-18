@@ -24,16 +24,16 @@ public class RocketMQTransactionProducer {
             @Override
             public LocalTransactionState executeLocalTransaction(Message msg, Object arg) {
                 System.out.printf("Executing local transaction for message: %s %n", new String(msg.getBody()));
-                // 模拟本地事务执行，这里简单返回未知状态，让 Broker 回查
-                return LocalTransactionState.UNKNOW;
-                //这个代表成功，会正常发送过去
-                //return LocalTransactionState.COMMIT_MESSAGE;
+                // 模拟本地事务执行，这里简单返回未知状态，让 Broker 回查(后续会调用checkLocalTransaction再次确认状态)
+                //return LocalTransactionState.UNKNOW;
+                //这个代表成功，会直接表示可以让消费者消费了(后续不会调用checkLocalTransaction再次确认状态)
+                return LocalTransactionState.COMMIT_MESSAGE;
             }
 
             @Override
             public LocalTransactionState checkLocalTransaction(MessageExt msg) {
                 System.out.printf("Checking local transaction for message: %s %n", new String(msg.getBody()));
-                // 模拟检查本地事务结果，返回提交状态
+                // 模拟检查本地事务结果，返回提交状态(executeLocalTransaction返回UNKNOW的情况会调用他再次确认)
                 return LocalTransactionState.COMMIT_MESSAGE;
             }
         });
@@ -52,7 +52,7 @@ public class RocketMQTransactionProducer {
         }
 
         // 等待一段时间，确保事务检查完成
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(100);
         // 关闭生产者
         producer.shutdown();
     }
