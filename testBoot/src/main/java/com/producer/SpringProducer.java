@@ -27,7 +27,7 @@ public class SpringProducer {
         for (int i = 0; i < 5; i++) {
             Message<Integer> message = MessageBuilder.withPayload(i).build();
             String destination =topic+":"+tags[i % tags.length];
-            System.out.println("Tag:"+destination+"数值:"+i);
+            System.out.println("Tag:"+destination+",数值:"+i);
             SendResult sendResult = rocketMQTemplate.sendMessageInTransaction(destination, message,destination);
             System.out.printf("%s%n", sendResult);
 

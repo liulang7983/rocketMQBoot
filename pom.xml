@@ -11,6 +11,7 @@
     <modules>
         <module>rocketMQBoot1</module>
         <module>testBoot</module>
+        <module>testBoot2</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

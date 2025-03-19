@@ -26,6 +26,7 @@ public class MyTransactionImpl implements RocketMQLocalTransactionListener {
         localTrans.put(id,destination);
         org.apache.rocketmq.common.message.Message message = RocketMQUtil.convertToRocketMessage(new StringMessageConverter(),"UTF-8",destination, msg);
         String tags = message.getTags();
+        System.out.println("executeLocalTransaction id:"+id+",destination:"+destination+",tags:"+tags);
         if(StringUtils.contains(tags,"TagA")){
             return RocketMQLocalTransactionState.COMMIT;
         }else if(StringUtils.contains(tags,"TagB")){
