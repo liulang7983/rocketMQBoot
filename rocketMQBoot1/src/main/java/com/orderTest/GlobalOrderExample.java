@@ -81,8 +81,10 @@ public class GlobalOrderExample {
         consumer.registerMessageListener(new MessageListenerOrderly() {
             @Override
             public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
+                System.out.println("拉去任务条数:"+msgs.size());
                 for (MessageExt msg : msgs) {
-                    System.out.printf("Received global ordered message: %s%n", new String(msg.getBody()));
+
+                    System.out.printf("Received global ordered message: %s%n  messageId :%s%n", new String(msg.getBody()),msg.getMsgId());
                 }
                 return ConsumeOrderlyStatus.SUCCESS;
             }
