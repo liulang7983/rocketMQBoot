@@ -14,6 +14,6 @@ import org.springframework.stereotype.Component;
 public class SpringConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
-        System.out.println("Received message : "+ message);
+        System.out.println("thread:"+ Thread.currentThread().getName()+",TestTopic message : "+ message);
     }
 }
