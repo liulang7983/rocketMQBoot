@@ -16,19 +16,6 @@ import java.util.List;
  * @Date 2025/3/18 10:50
  * @Version 1.0
  */
-//@Component
-//@RocketMQMessageListener(consumerGroup = "MyConsumerGroup", topic = "orderTopic",consumeMode = ConsumeMode.ORDERLY)
-//public class OrderConsumer implements MessageListenerOrderly {
-//
-//    @Override
-//    public ConsumeOrderlyStatus consumeMessage(List<MessageExt> list, ConsumeOrderlyContext consumeOrderlyContext) {
-//        for (MessageExt msg : list) {
-//            System.out.println("orderTopic message orderly: " + new String(msg.getBody()));
-//            // 处理消息的业务逻辑
-//        }
-//        return ConsumeOrderlyStatus.SUCCESS;
-//    }
-//}
 @Component
 @RocketMQMessageListener(consumerGroup = "MyOrderConsumerGroup", topic = "orderTopic",consumeMode = ConsumeMode.ORDERLY)
 public class OrderConsumer implements RocketMQListener<String> {
