@@ -17,6 +17,7 @@ public class ClusteringConsumer1 implements RocketMQListener<String> {
 
     @Override
     public void onMessage(String message) {
+        //集群模式下两个消费者会同时消费消息，不会重复消费
         System.out.printf("Clustering Consumer received message: %s %n", message);
     }
 }

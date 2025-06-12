@@ -35,6 +35,7 @@ public class RetryNumberComsumer implements RocketMQListener<String>, RocketMQPu
 
     @Override
     public void prepareStart(DefaultMQPushConsumer defaultMQPushConsumer) {
+        //设置当消费者处理消息失败时，最多重试消费 1 次
         defaultMQPushConsumer.setMaxReconsumeTimes(1);
     }
 }

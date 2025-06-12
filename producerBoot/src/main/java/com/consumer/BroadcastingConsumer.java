@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
  * @Author ming.li
  * @Date 2025/3/19 11:21
  * @Version 1.0
+ * 广播模式和顺序消费是冲突的，广播模式下不能顺序消费
  */
 
 @Service
