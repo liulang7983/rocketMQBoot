@@ -25,6 +25,9 @@ public class OnewayProducer {
                             i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
             );
             //Call send message to deliver message to one of brokers.
+            //是一种特殊的消息发送模式，用于无需等待 Broker 响应的场景
+            //无返回值，低延迟，不可靠
+            //发送单向消息（无需等待响应）
             producer.sendOneway(msg);
         }
         //Wait for sending to complete

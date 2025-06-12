@@ -33,8 +33,8 @@ public class GlobalOrderExample {
         // 创建生产者实例，指定生产者组名
         DefaultMQProducer producer = new DefaultMQProducer("GlobalOrderProducerGroup");
         // 指定 NameServer 地址
-        //producer.setNamesrvAddr("localhost:9876");
-        producer.setNamesrvAddr("127.0.0.1:9876;127.0.0.1:9877;127.0.0.1:9878;127.0.0.1:9879");
+        producer.setNamesrvAddr("localhost:9876");
+        //producer.setNamesrvAddr("127.0.0.1:9876;127.0.0.1:9877;127.0.0.1:9878;127.0.0.1:9879");
         // 启动生产者
         producer.start();
 

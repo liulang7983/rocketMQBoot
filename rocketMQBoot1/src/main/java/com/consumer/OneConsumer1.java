@@ -29,7 +29,7 @@ public class OneConsumer1 {
                 for (MessageExt msg : msgs) {
                     try {
                         // 处理消息
-                        System.out.println(Thread.currentThread().getName()+":"+new String(msg.getBody()));
+                        System.out.println(msg.getBrokerName()+":"+Thread.currentThread().getName()+":"+new String(msg.getBody()));
                     } catch (Exception e) {
                         e.printStackTrace();
                         // 消费失败，稍后重试

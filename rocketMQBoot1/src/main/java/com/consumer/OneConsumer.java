@@ -25,7 +25,7 @@ public class OneConsumer {
         // 3. 订阅主题和标签，* 表示订阅该主题下的所有标签
         consumer.subscribe("TopicTest", "*");
 
-        // 4. 注册消息监听器
+        // 4. 注册消息监听器(非顺序)
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
