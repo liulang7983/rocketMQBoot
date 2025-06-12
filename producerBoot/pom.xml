@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>testBoot</artifactId>
+    <artifactId>producerBoot</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
