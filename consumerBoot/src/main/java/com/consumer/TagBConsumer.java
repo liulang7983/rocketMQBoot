@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 public class TagBConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
+        //前面的RocketMQLocalTransactionListener中的executeLocalTransaction返回的是ROLLBACK回滚了
+        //这里消费不到
         System.out.println("thread:"+ Thread.currentThread().getName()+",tagTopic TagB message : "+ message);
     }
 }
