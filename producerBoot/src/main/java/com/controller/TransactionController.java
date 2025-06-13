@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("test")
-public class TestController {
+@RequestMapping("Transaction")
+public class TransactionController {
     @Autowired
     private SpringProducer springProducer;
 

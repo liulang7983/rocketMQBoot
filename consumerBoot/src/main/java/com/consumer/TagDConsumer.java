@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@RocketMQMessageListener(consumerGroup = "TagBConsumerGroup", topic = "tagTopic",selectorExpression = "TagB",consumeMode = ConsumeMode.ORDERLY)
-public class TagBConsumer implements RocketMQListener<String> {
+@RocketMQMessageListener(consumerGroup = "TagDConsumerGroup", topic = "tagTopic",selectorExpression = "TagD",consumeMode = ConsumeMode.ORDERLY)
+public class TagDConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
-        System.out.println("thread:"+ Thread.currentThread().getName()+",tagTopic TagB message : "+ message);
+        System.out.println("thread:"+ Thread.currentThread().getName()+",tagTopic TagD message : "+ message);
     }
 }
