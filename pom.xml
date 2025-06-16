@@ -12,6 +12,7 @@
         <module>rocketMQBoot1</module>
         <module>consumerBoot</module>
         <module>producerBoot</module>
+        <module>consumerBoot2</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

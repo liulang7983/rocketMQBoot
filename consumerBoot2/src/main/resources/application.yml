@@ -1,0 +1,8 @@
+#NameServer地址
+rocketmq:
+  consumer:
+    group: springBootGroup
+  name-server: 127.0.0.1:9876
+
+server:
+  port: 8082
