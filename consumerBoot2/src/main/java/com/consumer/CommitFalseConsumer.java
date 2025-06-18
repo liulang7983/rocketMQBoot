@@ -22,7 +22,7 @@ public class CommitFalseConsumer implements RocketMQListener<MessageExt> {
     @Override
     public void onMessage(MessageExt message) {
         try {
-            System.out.printf("CommitFalseTopic Consumer received message: %s %n", new String(message.getBody()));
+            System.out.printf("CommitFalseTopic Consumer received message: %s %n", message);
             System.out.println("a的值:"+a);
             if (a.get()<5){
                 a.getAndIncrement();
