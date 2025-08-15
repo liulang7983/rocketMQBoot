@@ -21,21 +21,16 @@ public class CommitFalseConsumer implements RocketMQListener<MessageExt> {
     public static AtomicInteger a=new AtomicInteger(0);
     @Override
     public void onMessage(MessageExt message) {
-        try {
-            System.out.printf("CommitFalseTopic Consumer received message: %s %n", message);
-            System.out.println("a的值:"+a);
-            if (a.get()<5){
-                a.getAndIncrement();
-                System.out.println("a加了之后的值:"+a);
-                throw new RuntimeException("消息处理失败");
-            }
-            System.out.println("消费成功:"+new String(message.getBody()));
-        }catch (Exception e){
-            e.fillInStackTrace();
-            throw new RuntimeException("消息处理失败", e);
+        System.out.println(Thread.currentThread().getName()+" 等待消费:"+new String(message.getBody()));
+        System.out.printf("CommitFalseTopic Consumer received message: %s %n", message);
+        System.out.println(Thread.currentThread().getName()+" a的值:"+a.get());
+        if (a.get()%5==0){
+            a.getAndIncrement();
+            System.out.println(Thread.currentThread().getName()+" a加了之后的值:"+a.get());
+            //不能try/catch,否则就算自动提交了
+            throw new RuntimeException("消息处理失败");
         }
-
-
+        System.out.println(Thread.currentThread().getName()+" 消费成功:"+new String(message.getBody()));
     }
 }
 

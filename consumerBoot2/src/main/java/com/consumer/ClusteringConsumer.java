@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RocketMQMessageListener(topic = "clusterTopic", consumerGroup = "clusteringConsumerGroup",
         messageModel = MessageModel.CLUSTERING)
-public class ClusteringConsumer1 implements RocketMQListener<String> {
+public class ClusteringConsumer implements RocketMQListener<String> {
 
     @Override
     public void onMessage(String message) {

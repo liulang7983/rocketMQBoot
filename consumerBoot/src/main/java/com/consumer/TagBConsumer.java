@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@RocketMQMessageListener(consumerGroup = "TagBConsumerGroup", topic = "tagTopic",selectorExpression = "TagB",consumeMode = ConsumeMode.ORDERLY)
+@RocketMQMessageListener(consumerGroup = "TagBConsumerGroup", topic = "tagTopic",
+        selectorExpression = "TagB",consumeMode = ConsumeMode.ORDERLY)
 public class TagBConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
