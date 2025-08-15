@@ -19,6 +19,7 @@ import java.util.List;
 @Component
 @RocketMQMessageListener(consumerGroup = "MyOrderConsumerGroup", topic = "orderTopic",consumeMode = ConsumeMode.ORDERLY)
 public class OrderConsumer implements RocketMQListener<String> {
+    //此时不是多线程消费，只会开一个线程来顺序的从队列拉取数据
     @Override
     public void onMessage(String message) {
         System.out.println("thread:"+ Thread.currentThread().getName()+",orderTopic message : "+ message);

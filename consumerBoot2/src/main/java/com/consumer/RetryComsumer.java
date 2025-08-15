@@ -4,6 +4,8 @@ import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @Author ming.li
  * @Date 2025/3/20 10:01
@@ -13,15 +15,15 @@ import org.springframework.stereotype.Service;
 @RocketMQMessageListener(topic = "retryTopic", consumerGroup = "TestConsumerGroup")
 public class RetryComsumer implements RocketMQListener<String> {
 
-    private int retryCount = 0;
+    public static AtomicInteger a=new AtomicInteger(0);
 
     @Override
     public void onMessage(String message) {
         try {
+            a.getAndIncrement();
             // 模拟业务处理异常，触发重试
-            if (retryCount < 3) {
-                retryCount++;
-                throw new RuntimeException("Consume message failed, retry " + retryCount + " times");
+            if (a.get() % 3==0) {
+                throw new RuntimeException("Consume message failed, retry " + message);
             }
             System.out.println("Message consumed successfully: " + message);
         } catch (Exception e) {

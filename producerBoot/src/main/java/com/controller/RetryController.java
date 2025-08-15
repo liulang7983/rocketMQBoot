@@ -20,9 +20,12 @@ public class RetryController {
 
     @GetMapping("/send")
     public String sendMessage() {
-        String message = "Hello, RocketMQ!";
-        // 发送消息到指定主题
-        rocketMQTemplate.convertAndSend("retryTopic", message);
+        for (int i = 0; i <6 ; i++) {
+            String message = "Hello, RocketMQ! "+i;
+            // 发送消息到指定主题
+            rocketMQTemplate.convertAndSend("retryTopic", message);
+        }
+
         return "Message sent successfully";
     }
 }
